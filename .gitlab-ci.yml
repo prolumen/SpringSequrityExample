@@ -6,9 +6,9 @@ stages:
 
 build:
   stage: build
-  script: ./petproject/mvn -f .petproject/pom.xml mvn clean install
+  script: mvn clean install
 
 
 test:
   stage: test
-  script: ./petproject/mvn -f .petproject/pom.xml mvn clean test
+  script: mvn clean test
