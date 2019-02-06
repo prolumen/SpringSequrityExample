@@ -1,16 +1,14 @@
-image: maven:latest
+image: java:8
 
-cache:
-  - maven
+stages:
+  - build
+  - test
 
 build:
   stage: build
-  script: mvn clean install
-  only:
-    -master
+  script: ./petproject/mvn -f .petproject/pom.xml mvn clean install
+
 
 test:
   stage: test
-  script: mvn clean test
-  only:
-    -master
+  script: ./petproject/mvn -f .petproject/pom.xml mvn clean test
