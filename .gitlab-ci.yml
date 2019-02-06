@@ -1,14 +1,16 @@
 image: maven:latest
 
-#cache:
-#  - target/
+cache:
+  - maven
 
 build:
   stage: build
+  script: mvn clean install
   only:
     -master
 
 test:
   stage: test
+  script: mvn clean test
   only:
     -master

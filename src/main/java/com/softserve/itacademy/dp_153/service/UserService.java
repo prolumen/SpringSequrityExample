@@ -7,6 +7,8 @@ import com.softserve.itacademy.dp_153.util.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
     @Autowired
@@ -14,11 +16,19 @@ public class UserService {
     private UserConverter converter = new UserConverter();
 
     public String createUser(UserDto dto) {
-        userDao.save(converter.asUser(dto));
-        return "created";
+        if (findByEmail(dto.getEmail()) == null) {
+            userDao.save(converter.asUser(dto));
+            return "created";
+        } else {
+            return "user is exist";
+        }
     }
 
     public User findByEmail(String email) {
        return userDao.findByEmail(email);
+    }
+
+    public List<User> getAllUsers() {
+        return (List<User>) userDao.findAll();
     }
 }

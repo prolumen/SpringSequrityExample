@@ -4,9 +4,9 @@ import com.softserve.itacademy.dp_153.model.User;
 import com.softserve.itacademy.dp_153.service.UserService;
 import com.softserve.itacademy.dp_153.util.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -14,17 +14,24 @@ public class UserController {
     @Autowired
     private UserService service;
 
-    @GetMapping("/new")
-    public String get(){
+    @PostMapping()
+    public @ResponseBody String post(@RequestParam String userName,
+                                     @RequestParam String email,
+                                     @RequestParam String password){
         UserDto dto = new UserDto();
-        dto.setUserName("user");
-        dto.setEmail("email");
-        dto.setPassword("111");
+        dto.setUserName(userName);
+        dto.setEmail(email);
+        dto.setPassword(password);
         return service.createUser(dto);
     }
 
-    @GetMapping("/email")
-    public User findByEmail() {
-        return service.findByEmail("email");
+    @GetMapping("/user")
+    public User findByEmail(@RequestParam String email) {
+        return service.findByEmail(email);
+    }
+
+    @GetMapping(/*"/users"*/)
+    public List<User> getAll() {
+        return service.getAllUsers();
     }
 }
