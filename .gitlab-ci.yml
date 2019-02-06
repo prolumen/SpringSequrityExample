@@ -1,0 +1,14 @@
+image: maven:latest
+
+#cache:
+#  - target/
+
+build:
+  stage: build
+  only:
+    -master
+
+test:
+  stage: test
+  only:
+    -master
