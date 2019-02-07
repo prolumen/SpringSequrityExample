@@ -15,7 +15,7 @@ public class UserController {
     private UserService service;
 
     @PostMapping()
-    public @ResponseBody String post(@RequestParam String userName,
+    public @ResponseBody String signUp(@RequestParam String userName,
                                      @RequestParam String email,
                                      @RequestParam String password){
         UserDto dto = new UserDto();
