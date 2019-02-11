@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .addFilterBefore(new StatelessAuthFilter(tokenAuthService),
                         UsernamePasswordAuthenticationFilter.class).authorizeRequests()
-                .antMatchers("/css/*", "/js/*", "/api/","/*").permitAll()
+                .antMatchers("/css/*", "/js/*").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll();
