@@ -2,27 +2,28 @@ package com.softserve.itacademy.dp_153.util.converters;
 
 import com.softserve.itacademy.dp_153.model.User;
 import com.softserve.itacademy.dp_153.util.dto.UserDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class UserConverter {
-//    @Autowired
-//    UserDto dto;
-//    @Autowired
-//    User user;
+    @Autowired
+    UserDto dto;
 
     public User asUser(UserDto userDto) {
         User user = new User();
-        user.setName(userDto.getUserName());
+        user.setUsername(userDto.getUserName());
         user.setEmail(userDto.getEmail());
         user.setPassword(userDto.getPassword());
         return user;
     }
 
     public UserDto asUserDto(User user) {
-        UserDto dto = new UserDto();
-        dto.setUserName(user.getName());
+        dto = new UserDto();
+        dto.setUserName(user.getUsername());
         dto.setEmail(user.getEmail());
         return dto;
     }
@@ -37,7 +38,6 @@ public class UserConverter {
 
     public List<User> asListUser(List<UserDto> dtos) {
         List<User> users = new ArrayList<>();
-//        dtos.iterator().forEachRemaining(UserDto -> users.add(asUser(UserDto)));
         for (UserDto dto: dtos) {
             users.add(asUser(dto));
         }

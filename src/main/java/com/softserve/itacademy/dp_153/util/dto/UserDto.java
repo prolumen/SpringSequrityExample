@@ -1,13 +1,16 @@
 package com.softserve.itacademy.dp_153.util.dto;
 
 import com.softserve.itacademy.dp_153.model.City;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class UserDto {
     private String userName;
     private String email;
     private String password;
+    private String role;
     private List<City> cities;
 
     public String getUserName() {
@@ -40,5 +43,13 @@ public class UserDto {
 
     public void setCities(List<City> cities) {
         this.cities = cities;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

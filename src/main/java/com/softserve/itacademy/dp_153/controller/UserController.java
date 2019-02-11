@@ -15,23 +15,38 @@ public class UserController {
     private UserService service;
 
     @PostMapping()
-    public @ResponseBody String signUp(@RequestParam String userName,
-                                     @RequestParam String email,
-                                     @RequestParam String password){
-        UserDto dto = new UserDto();
-        dto.setUserName(userName);
-        dto.setEmail(email);
-        dto.setPassword(password);
-        return service.createUser(dto);
+    public @ResponseBody String createUser(@RequestParam String userName,
+                                           @RequestParam String email,
+                                           @RequestParam String password,
+                                           @RequestParam String role){
+        System.out.println(userName);
+        return service.createUser(setUserDto(userName, email, password, role));
     }
 
-    @GetMapping("/user")
+    @GetMapping("/email")
     public User findByEmail(@RequestParam String email) {
         return service.findByEmail(email);
     }
 
-    @GetMapping(/*"/users"*/)
+    @GetMapping()
     public List<User> getAll() {
+        System.out.println("hi hitler");
         return service.getAllUsers();
+    }
+
+//    @PutMapping()
+//    public @ResponseBody String updateUser(@RequestParam String userName,
+//                                           @RequestParam String email,
+//                                           @RequestParam String password) {
+//        return service.createUser(setUserDto(userName, email, password));
+//    }
+
+    private UserDto setUserDto(String userName, String email, String password, String role) {
+        UserDto dto = new UserDto();
+        dto.setUserName(userName);
+        dto.setEmail(email);
+        dto.setPassword(password);
+        dto.setRole(role);
+        return dto;
     }
 }

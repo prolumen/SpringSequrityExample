@@ -11,9 +11,10 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String name;
+    private String username;
     private String email;
     private String password;
+    private Role authorities;
 
     public Integer getId() {
         return id;
@@ -23,12 +24,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -47,27 +48,35 @@ public class User {
         this.password = password;
     }
 
+    public Role getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Role authorities) {
+        this.authorities = authorities;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
         return getId().equals(user.getId()) &&
-                Objects.equals(getName(), user.getName()) &&
+                Objects.equals(getUsername(), user.getUsername()) &&
                 getEmail().equals(user.getEmail()) &&
                 getPassword().equals(user.getPassword());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getEmail(), getPassword());
+        return Objects.hash(getId(), getUsername(), getEmail(), getPassword());
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
