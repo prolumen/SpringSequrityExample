@@ -1,8 +1,10 @@
 package com.softserve.itacademy.dp_153.services;
 
+import com.softserve.itacademy.dp_153.dao.TokensDao;
 import com.softserve.itacademy.dp_153.dao.UserDao;
 import com.softserve.itacademy.dp_153.models.authentification.Role;
 import com.softserve.itacademy.dp_153.models.authentification.State;
+import com.softserve.itacademy.dp_153.models.authentification.Token;
 import com.softserve.itacademy.dp_153.models.user.User;
 import com.softserve.itacademy.dp_153.util.converters.UserConverter;
 import com.softserve.itacademy.dp_153.util.dto.UserDto;
@@ -18,7 +20,11 @@ public class UserService {
     @Autowired
     private UserDao userDao;
     @Autowired
+    private TokensDao tokensDao;
+    @Autowired
     private UserConverter converter;
+    @Autowired
+    private TokenHandler tokenHandler;
 
     public String createUser(UserDto dto) {
         if (findByEmail(dto.getEmail()) == null) {
@@ -44,7 +50,12 @@ public class UserService {
         return userDao.findById(id);
     }
 
-    private String getUsserExseptionMessage(String username){
+    public User findByUsername(@NotNull String value) {
+        Optional<Token> token = tokensDao.findOneByValue(value);
+
+        if (value != null) {
+            return (User) userDao.findById(tokenHandler.extractUserId(value).get()).get();
+        }
         return null;
     }
 }

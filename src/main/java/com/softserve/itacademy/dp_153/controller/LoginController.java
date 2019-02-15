@@ -6,8 +6,6 @@ import com.softserve.itacademy.dp_153.util.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -20,12 +18,6 @@ public class LoginController {
         UserDto dto = new UserDto();
         dto.setUsername(username);
         dto.setPassword(password);
-        try {
-
-            return ResponseEntity.ok(service.login(dto));
-        } catch (IllegalArgumentException e) {
-            System.out.println("///////////\n///////////////////\n/////////////////////\n///////////////////////");
-            return (ResponseEntity<TokenDto>) ResponseEntity.badRequest();
-        }
+        return ResponseEntity.ok(service.login(dto));
     }
 }
