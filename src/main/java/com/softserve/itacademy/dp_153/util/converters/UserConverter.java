@@ -1,8 +1,9 @@
 package com.softserve.itacademy.dp_153.util.converters;
 
-import com.softserve.itacademy.dp_153.model.User;
+import com.softserve.itacademy.dp_153.models.user.User;
 import com.softserve.itacademy.dp_153.util.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,19 +12,23 @@ import java.util.List;
 @Component
 public class UserConverter {
     @Autowired
-    UserDto dto;
+    private UserDto dto;
+    @Autowired
+    private PasswordEncoder encoder;
 
     public User asUser(UserDto userDto) {
         User user = new User();
-        user.setUsername(userDto.getUserName());
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setUsername(userDto.getUsername());
         user.setEmail(userDto.getEmail());
-        user.setPassword(userDto.getPassword());
+        user.setPassword(encoder.encode(userDto.getPassword()));
         return user;
     }
 
     public UserDto asUserDto(User user) {
         dto = new UserDto();
-        dto.setUserName(user.getUsername());
+        dto.setUsername(user.getUsername());
         dto.setEmail(user.getEmail());
         return dto;
     }

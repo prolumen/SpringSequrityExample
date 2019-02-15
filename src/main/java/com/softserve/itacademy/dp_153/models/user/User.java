@@ -1,27 +1,33 @@
-package com.softserve.itacademy.dp_153.util.dto;
+package com.softserve.itacademy.dp_153.models.user;
 
-import com.softserve.itacademy.dp_153.models.user.City;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
+import com.softserve.itacademy.dp_153.models.authentification.Role;
+import com.softserve.itacademy.dp_153.models.authentification.State;
 
-import java.util.List;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Objects;
 
-@Component
-public class UserDto {
+@Entity
+public class User implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     private String firstName;
     private String lastName;
     private String username;
     private String email;
     private String password;
-    private List<City> cities;
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
+    @Enumerated(value = EnumType.STRING)
+    private State state;
 
-    public UserDto() {}
+    public Integer getId() {
+        return id;
+    }
 
-    public UserDto(String firstName, String lastName, String username, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -61,16 +67,22 @@ public class UserDto {
     }
 
     public void setPassword(String password) {
-
         this.password = password;
     }
 
-    public List<City> getCities() {
-        return cities;
+    public Role getRole() {
+        return role;
     }
 
-    public void setCities(List<City> cities) {
-        this.cities = cities;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
 }

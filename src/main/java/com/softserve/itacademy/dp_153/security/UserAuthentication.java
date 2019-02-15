@@ -1,7 +1,7 @@
 package com.softserve.itacademy.dp_153.security;
 
-import com.softserve.itacademy.dp_153.model.Role;
-import com.softserve.itacademy.dp_153.model.User;
+import com.softserve.itacademy.dp_153.models.authentification.Role;
+import com.softserve.itacademy.dp_153.models.user.User;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,7 +20,7 @@ public class UserAuthentication implements Authentication {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<Role> roles = new ArrayList<>();
-        roles.add(user.getAuthorities());
+        roles.add(user.getRole());
         return roles;
     }
 

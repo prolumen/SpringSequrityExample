@@ -1,4 +1,4 @@
-package com.softserve.itacademy.dp_153.model;
+package com.softserve.itacademy.dp_153.models.user;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

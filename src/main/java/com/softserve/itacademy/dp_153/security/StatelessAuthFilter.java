@@ -1,6 +1,6 @@
 package com.softserve.itacademy.dp_153.security;
 
-import com.softserve.itacademy.dp_153.service.TokenAuthService;
+import com.softserve.itacademy.dp_153.services.TokenAuthService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
 

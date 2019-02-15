@@ -1,4 +1,4 @@
-package com.softserve.itacademy.dp_153.service;
+package com.softserve.itacademy.dp_153.services;
 
 import com.softserve.itacademy.dp_153.security.UserAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;

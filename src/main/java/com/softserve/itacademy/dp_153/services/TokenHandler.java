@@ -1,4 +1,4 @@
-package com.softserve.itacademy.dp_153.service;
+package com.softserve.itacademy.dp_153.services;
 
 import com.google.common.io.BaseEncoding;
 import io.jsonwebtoken.Claims;

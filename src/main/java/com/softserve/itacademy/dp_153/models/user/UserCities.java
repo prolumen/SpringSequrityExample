@@ -1,16 +1,17 @@
-package com.softserve.itacademy.dp_153.model;
+package com.softserve.itacademy.dp_153.models.user;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class UserSities {
+public class UserCities {
     @Id
     private Integer id;
+
     private Integer userId;
     private Integer cityId;
 
-    public UserSities() {}
+    public UserCities() {}
 
     public Integer getId() {
         return id;

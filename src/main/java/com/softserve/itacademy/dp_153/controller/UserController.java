@@ -1,7 +1,7 @@
 package com.softserve.itacademy.dp_153.controller;
 
-import com.softserve.itacademy.dp_153.model.User;
-import com.softserve.itacademy.dp_153.service.UserService;
+import com.softserve.itacademy.dp_153.models.user.User;
+import com.softserve.itacademy.dp_153.services.UserService;
 import com.softserve.itacademy.dp_153.util.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,13 +14,9 @@ public class UserController {
     @Autowired
     private UserService service;
 
-    @PostMapping()
-    public @ResponseBody String createUser(@RequestParam String userName,
-                                           @RequestParam String email,
-                                           @RequestParam String password,
-                                           @RequestParam String role){
-        System.out.println(userName);
-        return service.createUser(setUserDto(userName, email, password, role));
+    @PostMapping("/sign_up")
+    public @ResponseBody String createUser(String firstName, String lastName, String username, String password) {
+        return service.createUser(new UserDto(firstName, lastName, username, password));
     }
 
     @GetMapping("/email")
@@ -28,25 +24,8 @@ public class UserController {
         return service.findByEmail(email);
     }
 
-    @GetMapping()
+    @GetMapping("/users")
     public List<User> getAll() {
-        System.out.println("hi hitler");
         return service.getAllUsers();
-    }
-
-//    @PutMapping()
-//    public @ResponseBody String updateUser(@RequestParam String userName,
-//                                           @RequestParam String email,
-//                                           @RequestParam String password) {
-//        return service.createUser(setUserDto(userName, email, password));
-//    }
-
-    private UserDto setUserDto(String userName, String email, String password, String role) {
-        UserDto dto = new UserDto();
-        dto.setUserName(userName);
-        dto.setEmail(email);
-        dto.setPassword(password);
-        dto.setRole(role);
-        return dto;
     }
 }
